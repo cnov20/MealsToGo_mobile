@@ -7,16 +7,16 @@ import RestaurantInfoCard from '../components/restaurant-info-card.component';
 const isAndroid = Platform.OS === 'android';
 console.log(StatusBar.currentHeight);
 
-const SafeContainer = styled(SafeAreaView)`
+const SafeArea = styled(SafeAreaView)`
   flex: 1;
-  // marginTop: isAndroid;
+  ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`};
 `;
 
-const Search = styled(View)`
+const SearchContainer = styled(View)`
   padding: 15px;
 `;
 
-const List = styled(View)`
+const RestaurantList = styled(View)`
   flex: 1;
   backgroundColor: blue;
   padding: 15px;
@@ -30,18 +30,18 @@ const RestaurantsScreen = () => {
   const onChangeSearch = query => setSearchQuery(query);
 
     return (
-        <SafeContainer style={styles.container}>
-          <Search>
+        <SafeArea>
+          <SearchContainer>
             <Searchbar
               placeholder="Search"
               onChangeText={onChangeSearch}
               value={searchQuery}
             />
-          </Search>
-        <List>
+          </SearchContainer>
+        <RestaurantList>
             <RestaurantInfoCard />
-          </List>
-      </SafeContainer>
+        </RestaurantList>
+      </SafeArea>
     )
 }
 

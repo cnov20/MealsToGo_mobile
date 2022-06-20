@@ -8,10 +8,7 @@ console.log(StatusBar.currentHeight);
 
 export default function App() {
   return (
-    <SafeAreaView style={{ flex:1, marginTop: isAndroid ? StatusBar.currentHeight : null }}>
-      {/* <View style={styles.container}>
-        <Text>Our React Native Blank Canvas</Text>
-      </View> */}
+    <SafeAreaView style={styles.container}>
       <View style={styles.search}>
         <Text>Search</Text>
       </View>
@@ -26,9 +23,9 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'orange',
     // alignItems: 'center',
     // justifyContent: 'center',
+    marginTop: isAndroid ? StatusBar.currentHeight : null
   },
   search: {
     // flex: 0,

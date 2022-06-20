@@ -1,7 +1,7 @@
 import react, { useState } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, StatusBar, Platform } from 'react-native';
-import { Searchbar } from 'react-native-paper';
-import RestaurantInfo from '../components/restaurant-info.component';
+import { Searchbar, Card } from 'react-native-paper';
+import RestaurantInfoCard from '../components/restaurant-info-card.component';
 
 const isAndroid = Platform.OS === 'android';
 console.log(StatusBar.currentHeight);
@@ -21,8 +21,9 @@ const RestaurantsScreen = () => {
               value={searchQuery}
             />
           </View>
-          <View style={styles.list}>
-            <RestaurantInfo/>
+        <View style={styles.list}>
+         
+            <RestaurantInfoCard />
           </View>
       </SafeAreaView>
     )

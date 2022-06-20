@@ -1,19 +1,43 @@
 import react from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar as ExpoStatusBar} from 'expo-status-bar';
+import { StyleSheet, Text, View, SafeAreaView, StatusBar, Platform } from 'react-native';
+
+const isAndroid = Platform.OS === 'android';
+
+console.log(StatusBar.currentHeight);
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Our React Native Blank Canvas</Text>
-    </View>
+    <SafeAreaView style={{ flex:1, marginTop: isAndroid ? StatusBar.currentHeight : null }}>
+      {/* <View style={styles.container}>
+        <Text>Our React Native Blank Canvas</Text>
+      </View> */}
+      <View style={styles.search}>
+        <Text>Search</Text>
+      </View>
+      <View style={styles.list}>
+        <Text>List</Text>
+      </View>
+      <ExpoStatusBar style='auto'/>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   backgroundColor: '#fff',
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  // },
+  container: {
+    flex: 1,
+    backgroundColor: 'orange',
+    // alignItems: 'center',
+    // justifyContent: 'center',
+  },
+  search: {
+    // flex: 0,
+    backgroundColor: 'green',
+    padding: 10
+  },
+  list: {
+    flex: 1,
+    backgroundColor: 'blue',
+    padding: 10
+  }
 });

@@ -13,13 +13,13 @@ const SafeArea = styled(SafeAreaView)`
 `;
 
 const SearchContainer = styled(View)`
-  padding: 15px;
+  padding: ${(props) => props.theme.spacing[3]};
 `;
 
-const RestaurantList = styled(View)`
+const RestaurantListContainer = styled(View)`
   flex: 1;
-  backgroundColor: blue;
-  padding: 15px;
+  backgroundColor: ${(props) => props.theme.colors.brand.primary};
+  padding: ${(props) => props.theme.sizes[3]};
 `;
 
 
@@ -38,9 +38,9 @@ const RestaurantsScreen = () => {
               value={searchQuery}
             />
           </SearchContainer>
-        <RestaurantList>
+        <RestaurantListContainer>
             <RestaurantInfoCard />
-        </RestaurantList>
+        </RestaurantListContainer>
       </SafeArea>
     )
 }

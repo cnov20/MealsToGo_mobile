@@ -13,13 +13,13 @@ const SafeArea = styled(SafeAreaView)`
 `;
 
 const SearchContainer = styled(View)`
-  padding: ${(props) => props.theme.spacing[3]};
+  padding: ${(props) => props.theme.space[3]};
 `;
 
 const RestaurantListContainer = styled(View)`
   flex: 1;
   backgroundColor: ${(props) => props.theme.colors.brand.primary};
-  padding: ${(props) => props.theme.sizes[3]};
+  padding: ${(props) => props.theme.space[3]};
 `;
 
 

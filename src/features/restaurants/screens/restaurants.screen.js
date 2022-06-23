@@ -8,7 +8,7 @@ import { Spacer } from '../../../components/spacer/spacer.components';
 const isAndroid = Platform.OS === 'android';
 console.log(StatusBar.currentHeight);
 
-const SafeArea = styled(SafeAreaView)`
+export const SafeArea = styled(SafeAreaView)`
   flex: 1;
   ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`};
 `;
@@ -22,6 +22,12 @@ const SearchContainer = styled(View)`
 //   backgroundColor: ${(props) => props.theme.colors.brand.primary};
 //   padding: ${(props) => props.theme.space[3]};
 // `;
+
+const RestaurantList = styled(FlatList).attrs({
+  contentContainerStyle: {
+    padding: 16,
+  },
+})``;
 
 
 const RestaurantsScreen = () => {
@@ -39,15 +45,15 @@ const RestaurantsScreen = () => {
               value={searchQuery}
             />
           </SearchContainer>
-          <FlatList
+          <RestaurantList
             data={[{ name: 1 }, { name: 2 }]}
-          renderItem={() =>
-            <Spacer position="bottom" size="large">
-              <RestaurantInfoCard />
-            </Spacer>
+            renderItem={() =>
+              <Spacer position="bottom" size="large">
+                <RestaurantInfoCard />
+              </Spacer>
           }
             keyExtractor={(item) => item.name}
-            contentContainerStyle={{ padding: 16 }}
+            // contentContainerStyle={{ padding: 16 }}
           />
          
       </SafeArea>

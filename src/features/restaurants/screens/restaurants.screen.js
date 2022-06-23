@@ -1,17 +1,19 @@
 import react, { useState } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import { StyleSheet, Text, View, SafeAreaView, StatusBar, Platform, FlatList } from 'react-native';
 import { Searchbar, Card } from 'react-native-paper';
+
 import RestaurantInfoCard from '../components/restaurant-info-card.component';
 import { Spacer } from '../../../components/spacer/spacer.components';
+import { SafeArea } from '../../../components/utils/safe-area.component';
 
 const isAndroid = Platform.OS === 'android';
 console.log(StatusBar.currentHeight);
 
-export const SafeArea = styled(SafeAreaView)`
-  flex: 1;
-  ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`};
-`;
+// export const SafeArea = styled(SafeAreaView)`
+//   flex: 1;
+//   ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`};
+// `;
 
 const SearchContainer = styled(View)`
   padding: ${(props) => props.theme.space[3]};

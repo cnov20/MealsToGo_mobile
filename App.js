@@ -8,6 +8,7 @@ import { theme } from './src/infrastructure/theme';
 import { ThemeProvider } from 'styled-components/native';
 
 import RestaurantsScreen from './src/features/restaurants/screens/restaurants.screen';
+import { SafeArea } from './src/components/utils/safe-area.component';
 
 import {
   useFonts as useOswald,
@@ -34,22 +35,22 @@ function Restaurant({ navigation }) {
 
 function MapScreen({ navigation }) {
   return (
-    <View>
+    <SafeArea>
       <Text>Map</Text>
       <Button
         title="Go to Restaurants"
         onPress={() => navigation.navigate('Settings')}
       />
-    </View>
+    </SafeArea>
   );
 }
 
 function SettingsScreen({ navigation }) {
   return (
-    <View>
+    <SafeArea>
       <Text>Settings</Text>
       <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-    </View>
+    </SafeArea>
   );
 }
 
@@ -72,7 +73,6 @@ export default function App() {
     return (
       <>
         <ThemeProvider theme={theme}>
-            {/* <RestaurantsScreen/> */}
           <NavigationContainer>
             <Tab.Navigator>
               <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
@@ -80,7 +80,6 @@ export default function App() {
               <Tab.Screen name="Settings" component={SettingsScreen} />
             </Tab.Navigator>
           </NavigationContainer>
-            {/* </RestaurantsScreen> */}
         </ThemeProvider>
         
 

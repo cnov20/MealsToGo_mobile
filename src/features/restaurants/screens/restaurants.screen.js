@@ -39,9 +39,10 @@ const RestaurantsScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const onChangeSearch = query => setSearchQuery(query);
   
-  const restaurantContext = useContext(RestaurantsContext);
-
-    return (
+  //  const restaurantContext = useContext(RestaurantsContext);
+  const { isLoading, error, restaurants } = useContext(RestaurantsContext);
+  console.log(error);
+  return (
         <SafeArea>
           <SearchContainer>
             <Searchbar
@@ -51,10 +52,10 @@ const RestaurantsScreen = () => {
             />
           </SearchContainer>
           <RestaurantList
-            data={restaurantContext.restaurants}
-            renderItem={() =>
+            data={restaurants}
+            renderItem={({ item }) =>
               <Spacer position="bottom" size="large">
-                <RestaurantInfoCard />
+                <RestaurantInfoCard restaurant={item} />
               </Spacer>
           }
             keyExtractor={(item) => item.name}

@@ -39,7 +39,7 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
     } = restaurant;
 
     const ratingArray = Array.from(new Array(Math.floor(rating)));
-    console.log(ratingArray);
+    // console.log(ratingArray);
 
     return (
         <View>

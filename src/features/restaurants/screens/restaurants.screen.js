@@ -1,4 +1,4 @@
-import react, { useState } from 'react';
+import react, { useState, useContext } from 'react';
 import styled from 'styled-components/native';
 import { StyleSheet, Text, View, SafeAreaView, StatusBar, Platform, FlatList } from 'react-native';
 import { Searchbar, Card } from 'react-native-paper';
@@ -6,6 +6,8 @@ import { Searchbar, Card } from 'react-native-paper';
 import RestaurantInfoCard from '../components/restaurant-info-card.component';
 import { Spacer } from '../../../components/spacer/spacer.components';
 import { SafeArea } from '../../../components/utils/safe-area.component';
+
+import { RestaurantsContext } from '../../../services/restaurants/restaurants.context';
 
 const isAndroid = Platform.OS === 'android';
 console.log(StatusBar.currentHeight);
@@ -35,8 +37,9 @@ const RestaurantList = styled(FlatList).attrs({
 const RestaurantsScreen = () => {
 
   const [searchQuery, setSearchQuery] = useState('');
-
   const onChangeSearch = query => setSearchQuery(query);
+  
+  const restaurantContext = useContext(RestaurantsContext);
 
     return (
         <SafeArea>
@@ -48,7 +51,7 @@ const RestaurantsScreen = () => {
             />
           </SearchContainer>
           <RestaurantList
-            data={[{ name: 1 }, { name: 2 }]}
+            data={restaurantContext.restaurants}
             renderItem={() =>
               <Spacer position="bottom" size="large">
                 <RestaurantInfoCard />

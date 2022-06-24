@@ -33,6 +33,15 @@ const RestaurantList = styled(FlatList).attrs({
   },
 })``;
 
+const Loading = styled(ActivityIndicator)`
+  margin-left: -25px;
+`
+
+const LoadingContainer = styled(View)`
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+`
 
 const RestaurantsScreen = () => {
 
@@ -42,15 +51,13 @@ const RestaurantsScreen = () => {
   //  const restaurantContext = useContext(RestaurantsContext);
   const { isLoading, error, restaurants } = useContext(RestaurantsContext);
   console.log(error);
-
-
-
+  
   return (
     <SafeArea>
       {isLoading && (
-      <View style = {{ position: "absolute", top: "50%", left: "50%"}} >
-        <ActivityIndicator style={{ marginLeft: -25 }} size={50} animating={true} color={Colors.blue300} />
-      </View>
+      <LoadingContainer>
+        <Loading size={50} animating={true} color={Colors.blue300} />
+      </LoadingContainer>
   )}
       <SearchContainer>
             <Searchbar

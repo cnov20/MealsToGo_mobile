@@ -1,7 +1,7 @@
 import react, { useState, useContext } from 'react';
 import styled from 'styled-components/native';
 import { StyleSheet, Text, View, SafeAreaView, StatusBar, Platform, FlatList } from 'react-native';
-import { Searchbar, Card } from 'react-native-paper';
+import { Searchbar, Card, ActivityIndicator, Colors } from 'react-native-paper';
 
 import RestaurantInfoCard from '../components/restaurant-info-card.component';
 import { Spacer } from '../../../components/spacer/spacer.components';
@@ -42,9 +42,17 @@ const RestaurantsScreen = () => {
   //  const restaurantContext = useContext(RestaurantsContext);
   const { isLoading, error, restaurants } = useContext(RestaurantsContext);
   console.log(error);
+
+
+
   return (
-        <SafeArea>
-          <SearchContainer>
+    <SafeArea>
+      {isLoading && (
+      <View style = {{ position: "absolute", top: "50%", left: "50%"}} >
+        <ActivityIndicator style={{ marginLeft: -25 }} size={50} animating={true} color={Colors.blue300} />
+      </View>
+  )}
+      <SearchContainer>
             <Searchbar
               placeholder="Search"
               onChangeText={onChangeSearch}

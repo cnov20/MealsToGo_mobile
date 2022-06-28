@@ -1,9 +1,6 @@
 import react, { useState } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, StatusBar, Platform, Button } from 'react-native';
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
 import { theme } from './src/infrastructure/theme';
 import { ThemeProvider } from 'styled-components/native';
 
@@ -11,7 +8,6 @@ import RestaurantsScreen from './src/features/restaurants/screens/restaurants.sc
 import { SafeArea } from './src/components/utils/safe-area.component';
 
 import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
-// src/services/restaurants/restaurants.context.js
 
 import { Ionicons } from '@expo/vector-icons';
 
@@ -60,8 +56,6 @@ function SettingsScreen({ navigation }) {
   );
 }
 
-const Tab = createBottomTabNavigator();
-
 const TAB_ICON = {
   Restaurants: "md-restaurant",
   Map: "md-map",
@@ -98,17 +92,10 @@ export default function App() {
       <>
         <ThemeProvider theme={theme}>
           <LocationContextProvider>
-          <RestaurantsContextProvider>
-            <NavigationContainer>
-              <Tab.Navigator
-                screenOptions={createScreenOptions}>
-                <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
-                <Tab.Screen name="Map" component={MapScreen} />
-                <Tab.Screen name="Settings" component={SettingsScreen} />
-              </Tab.Navigator>
-              </NavigationContainer>
+            <RestaurantsContextProvider>
+              <Navigation/>
             </RestaurantsContextProvider>
-            </LocationContextProvider>
+          </LocationContextProvider>
         </ThemeProvider>
       </>
     );

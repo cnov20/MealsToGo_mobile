@@ -1,6 +1,6 @@
 import react, { useState, useContext } from 'react';
 import styled from 'styled-components/native';
-import { StyleSheet, Text, View, SafeAreaView, StatusBar, Platform, FlatList } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, StatusBar, Platform, FlatList, Pressable } from 'react-native';
 import { Card, ActivityIndicator, Colors } from 'react-native-paper';
 
 import RestaurantInfoCard from '../components/restaurant-info-card.component';
@@ -41,7 +41,7 @@ const LoadingContainer = styled(View)`
   left: 50%;
 `
 
-const RestaurantsScreen = () => {
+const RestaurantsScreen = ( { navigation }) => {
 
   const [searchQuery, setSearchQuery] = useState('');
   const onChangeSearch = query => setSearchQuery(query);
@@ -61,9 +61,11 @@ const RestaurantsScreen = () => {
           <RestaurantList
             data={restaurants}
             renderItem={({ item }) =>
-              <Spacer position="bottom" size="large">
-                <RestaurantInfoCard restaurant={item} />
-              </Spacer>
+              <Pressable onPress={() => navigation.navigate('Restaurant Detail')}>
+                <Spacer position="bottom" size="large">
+                  <RestaurantInfoCard restaurant={item} />
+                </Spacer>
+              </Pressable>
           }
             keyExtractor={(item) => item.name}
             // contentContainerStyle={{ padding: 16 }}

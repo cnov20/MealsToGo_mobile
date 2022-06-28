@@ -24,6 +24,7 @@ import {
   useFonts as useLato,
   Lato_400Regular,
 } from '@expo-google-fonts/lato';
+import { LocationContextProvider } from './src/services/location/location.context';
 
 
 function Restaurant({ navigation }) {
@@ -96,6 +97,7 @@ export default function App() {
     return (
       <>
         <ThemeProvider theme={theme}>
+          <LocationContextProvider>
           <RestaurantsContextProvider>
             <NavigationContainer>
               <Tab.Navigator
@@ -106,6 +108,7 @@ export default function App() {
               </Tab.Navigator>
               </NavigationContainer>
             </RestaurantsContextProvider>
+            </LocationContextProvider>
         </ThemeProvider>
       </>
     );

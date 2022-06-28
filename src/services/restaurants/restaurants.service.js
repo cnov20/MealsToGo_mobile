@@ -19,6 +19,7 @@ const restaurantsTransform = function ({ results = [] }) {
         });
         return {
             ...restaurant,
+            address: restaurant.vicinity,
             isOpenNow: restaurant.opening_hours && restaurant.opening_hours.open_now,
             isClosedTemporarily: restaurant.business_status === "CLOSED_TEMPORARILY"
         }

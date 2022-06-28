@@ -12,11 +12,10 @@ export const LocationContextProvider = ({ children }) => {
     const [error, setError] = useState(null);
   
     const onSearch = (searchKeyword = "Antwerp") => {
-    //   console.log(searchKeyword);
         setIsLoading(true);
         setKeyword(searchKeyword);
         if (!searchKeyword.length) return;
-        console.log(searchKeyword);
+        // console.log(searchKeyword);
     };
   
     useEffect(() => {

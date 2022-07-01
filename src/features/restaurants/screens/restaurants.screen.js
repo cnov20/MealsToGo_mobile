@@ -9,6 +9,7 @@ import { SafeArea } from '../../../components/utils/safe-area.component';
 
 import { RestaurantsContext } from '../../../services/restaurants/restaurants.context';
 import { Search } from '../components/search.component';
+import { TouchableOpacity } from 'react-native-web';
 
 const isAndroid = Platform.OS === 'android';
 console.log(StatusBar.currentHeight);
@@ -41,40 +42,48 @@ const LoadingContainer = styled(View)`
   left: 50%;
 `
 
-const RestaurantsScreen = ( { navigation }) => {
+export const RestaurantsScreen = ({ navigation }) => {
 
-  const [searchQuery, setSearchQuery] = useState('');
-  const onChangeSearch = query => setSearchQuery(query);
+  // const [searchQuery, setSearchQuery] = useState('');
+  // const onChangeSearch = query => setSearchQuery(query);
   
   //  const restaurantContext = useContext(RestaurantsContext);
-  const { isLoading, error, restaurants } = useContext(RestaurantsContext);
-  console.log(error);
+  const { isLoading, restaurants } = useContext(RestaurantsContext);
+  // console.log(error);
   
   return (
     <SafeArea>
       {isLoading && (
-      <LoadingContainer>
-        <Loading size={50} animating={true} color={Colors.blue300} />
-      </LoadingContainer>
-  )}
-      <Search/>
-          <RestaurantList
-            data={restaurants}
-            renderItem={({ item }) =>
-              <Pressable onPress={() => navigation.navigate('Restaurant Detail')}>
-                <Spacer position="bottom" size="large">
-                  <RestaurantInfoCard restaurant={item} />
-                </Spacer>
-              </Pressable>
-          }
-            keyExtractor={(item) => item.name}
-            // contentContainerStyle={{ padding: 16 }}
-          />
+        <LoadingContainer>
+          <Loading size={50} animating={true} color={Colors.blue300} />
+        </LoadingContainer>
+      )}
+      <Search />
+      <RestaurantList
+        data={restaurants}
+        renderItem={({ item }) => {
+          return (
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('Restaurant Detail', {
+                restaurant: item,
+              })
+            }
+            >
+              <Spacer position="bottom" size="large">
+                <RestaurantInfoCard restaurant={item} />
+              </Spacer>
+            </TouchableOpacity>
+          );
+        }}
+        keyExtractor={(item) => item.name}
+      // contentContainerStyle={{ padding: 16 }}
+      />
          
-      </SafeArea>
-    )
-}
+    </SafeArea>
+  );
+};
 
 const styles = StyleSheet.create({});
 
-export default RestaurantsScreen
+// export default RestaurantsScreen

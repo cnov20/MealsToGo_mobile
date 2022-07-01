@@ -52,7 +52,7 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
                         <Rating>
                             {ratingArray.map((_, index) => (
                                 <SvgXml key={`star-${placedId}-${index}`} xml={star} width={20} height={20} />
-                            ))}   
+                            ))}
                         </Rating>
                         <SectionEnd>
                             {isClosedTemporarily && <Text variant="error">CLOSED TEMPORARILY</Text>}
@@ -61,16 +61,16 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
                             </Spacer>
                             <Spacer position="left" size="large">
                                 <Icon source={{ uri: icon }} />
-                             </Spacer>
-                        </SectionEnd>     
+                            </Spacer>
+                        </SectionEnd>
                     </Section>
                     <Address>{address}</Address>
                     
                 </Info>
             </RestaurantCard>
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({})
 

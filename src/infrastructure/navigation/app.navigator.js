@@ -8,6 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { SafeArea } from '../../components/utils/safe-area.component';
 import { RestaurantsNavigator } from './restaurants.navigator';
 
+import { MapScreen } from '../../features/map/screens/map.screen';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,17 +18,6 @@ const TAB_ICON = {
   Settings: "md-settings"
 }
 
-function Map() {
-  return (
-    <SafeArea>
-      <Text>Map</Text>
-      {/* <Button
-        title="Go to Restaurants"
-        onPress={() => navigation.navigate('Restaurants')}
-      /> */}
-    </SafeArea>
-  );
-}
 
 function Settings() {
   return (
@@ -37,12 +27,6 @@ function Settings() {
     </SafeArea>
   );
 }
-
-
-
-// const tabBarIcon = (iconName) => ({ size, color }) => {
-//   return <Ionicons name={iconName} size={size} color={color} />;
-// };
 
 
 const createScreenOptions = ({ route }) => {
@@ -65,7 +49,7 @@ const AppNavigator = ({route}) => {
         }}
       >
         <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
-        <Tab.Screen name="Map" component={Map} />
+        <Tab.Screen name="Map" component={MapScreen} />
         <Tab.Screen name="Settings" component={Settings} />
       </Tab.Navigator>
     </NavigationContainer>

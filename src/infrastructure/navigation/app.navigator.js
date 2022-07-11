@@ -1,7 +1,7 @@
 import react from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
 
-import { NavigationContainer } from '@react-navigation/native';
+// import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -40,7 +40,7 @@ const createScreenOptions = ({ route }) => {
 
 const AppNavigator = ({route}) => {
   return (
-    <NavigationContainer>
+    // <NavigationContainer>
       <Tab.Navigator
         screenOptions={createScreenOptions}
         // tabBarOptions={{
@@ -52,7 +52,7 @@ const AppNavigator = ({route}) => {
         <Tab.Screen name="Map" component={MapScreen} />
         <Tab.Screen name="Settings" component={Settings} />
       </Tab.Navigator>
-    </NavigationContainer>
+    // </NavigationContainer>
   );
 }
 

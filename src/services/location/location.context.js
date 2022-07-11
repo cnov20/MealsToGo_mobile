@@ -14,8 +14,6 @@ export const LocationContextProvider = ({ children }) => {
     const onSearch = (searchKeyword) => {
         setIsLoading(true);
         setKeyword(searchKeyword);
-        // if (!searchKeyword.length) return;
-        // console.log(searchKeyword);
     };
   
     useEffect(() => {
@@ -29,7 +27,7 @@ export const LocationContextProvider = ({ children }) => {
           // setError(null);
           setIsLoading(false);
           setLocation(result);
-          console.log("RESULT: ", result);
+          // console.log("RESULT: ", result);
         })
         .catch((err) => {
           setIsLoading(false);
@@ -49,5 +47,5 @@ export const LocationContextProvider = ({ children }) => {
       >
         {children}
       </LocationContext.Provider>
-    );
-  };
+  );
+}

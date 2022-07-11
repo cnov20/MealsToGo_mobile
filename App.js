@@ -1,60 +1,6 @@
-// import react, { useState } from 'react';
-// import { StyleSheet, Text, View, SafeAreaView, StatusBar, Platform, Button } from 'react-native';
-
-// import { theme } from './src/infrastructure/theme';
-// import { ThemeProvider } from 'styled-components/native';
-
-// import RestaurantsScreen from './src/features/restaurants/screens/restaurants.screen';
-// import { SafeArea } from './src/components/utils/safe-area.component';
-
-// import { Navigation } from './src/infrastructure/navigation';
-
-// import { Ionicons } from '@expo/vector-icons';
-
-// import {
-//   useFonts as useOswald,
-//   Oswald_400Regular,
-// } from '@expo-google-fonts/oswald';
-
-// import {
-//   useFonts as useLato,
-//   Lato_400Regular,
-// } from '@expo-google-fonts/lato';
-
-// import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
-// import { LocationContextProvider } from './src/services/location/location.context';
-// import ExpoStatusBar from 'expo-status-bar/build/ExpoStatusBar';
-
-// export default function App() {
-
-//   const [oswaldLoaded] = useOswald({
-//     Oswald_400Regular,
-//   });
-
-//   const [latoLoaded] = useLato({
-//     Lato_400Regular,
-//   });
-  
-//   if (!oswaldLoaded || !latoLoaded) {
-//     return null;
-//   }
-  
-//   return (
-//       <>
-//         <ThemeProvider theme={theme}>
-//           <LocationContextProvider>
-//             <RestaurantsContextProvider>
-//               <Navigation/>
-//             </RestaurantsContextProvider>
-//           </LocationContextProvider>
-//       </ThemeProvider>
-//       <ExpoStatusBar style='auto'/>
-//     </>
-//   );
-// }
-
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import React from "react";
+import react, { useState, useEffect } from "react";
+
 import { ThemeProvider } from "styled-components/native";
 import {
   useFonts as useOswald,
@@ -68,7 +14,21 @@ import { RestaurantsContextProvider } from "./src/services/restaurants/restauran
 import { LocationContextProvider } from "./src/services/location/location.context";
 import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
 
-import * as firebase from "firebase";
+// import * as firebase from "firebase";
+// import firebase from "firebase/compat/app";
+// import "firebase/compat/auth";
+// import "firebase/compat/firestore";
+
+ // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+
+// Optionally import the services that you want to use
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyAl84P3BuIgmFHSsQUtF_0MmUnyi374skI",
@@ -79,18 +39,42 @@ const firebaseConfig = {
   appId: "1:1051003935063:web:0519c72d156b8c86058612"
 };
 
-firebase.initializeApp(firebaseConfig);
+// if (!firebase.apps.length) {
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+// }
 
 export default function App() {
+
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+        signInWithEmailAndPassword(auth, "test1@test.com", "test123")
+        .then((user) => {
+          console.log(user);
+          setIsAuthenticated(true);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }, 2000);
+  }, []);
+
   const [oswaldLoaded] = useOswald({
     Oswald_400Regular,
   });
+
   const [latoLoaded] = useLato({
     Lato_400Regular,
   });
+
   if (!oswaldLoaded || !latoLoaded) {
     return null;
   }
+
+  if (!isAuthenticated) return null;
+  
   return (
     <>
       <ThemeProvider theme={theme}>

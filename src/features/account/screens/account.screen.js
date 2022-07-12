@@ -1,6 +1,5 @@
 import react from "react";
 
-import { AccountBackground, AccountCover } from "../components/account.styles";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import {
   AccountBackground,

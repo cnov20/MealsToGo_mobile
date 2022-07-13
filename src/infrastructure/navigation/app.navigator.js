@@ -7,6 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import { SafeArea } from '../../components/utils/safe-area.component';
 import { RestaurantsNavigator } from './restaurants.navigator';
+import { SettingsNavigator } from "./settings.navigator";
 
 import { MapScreen } from '../../features/map/screens/map.screen';
 
@@ -22,18 +23,6 @@ const TAB_ICON = {
   Map: "md-map",
   Settings: "md-settings"
 }
-
-
-const Settings = () => {
-  const { onLogout } = useContext(AuthenticationContext);
-  return (
-    <SafeArea>
-      <Text>Settings</Text>
-      <Button title="logout" onPress={() => onLogout()} />
-    </SafeArea>
-  );
-};
-
 
 const createScreenOptions = ({ route }) => {
   const iconName = TAB_ICON[route.name];
@@ -58,7 +47,7 @@ const AppNavigator = ({route}) => {
         >
           <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
           <Tab.Screen name="Map" component={MapScreen} />
-          <Tab.Screen name="Settings" component={Settings} />
+          <Tab.Screen name="Settings" component={SettingsNavigator} />
         </Tab.Navigator>
       </RestaurantsContextProvider>
     </LocationContextProvider>

@@ -1,7 +1,7 @@
 // import * as firebase from "firebase";
 
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps } from "firebase/app";
 
 // Optionally import the services that you want to use
 import {
@@ -19,11 +19,11 @@ const firebaseConfig = {
   appId: "1:1051003935063:web:0519c72d156b8c86058612"
 };
 
-// if (!firebase.apps.length) {
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+// if (getApps().length < 1) {
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
 // }
 
-export const loginRequest = async (email, password) => {
+export const loginRequest = async (auth, email, password) => {
   await signInWithEmailAndPassword(auth, email, password);
 }

@@ -1,17 +1,37 @@
 import React, { useState, useEffect, createContext } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 
 import { loginRequest } from "./authentication.service";
-
 
 const auth = getAuth();
 
 export const AuthenticationContext = createContext();
 
+ // createUserWithEmailAndPassword(auth, email, password)
+  // .then((userCredential) => {
+  //   // Signed in 
+  //   const user = userCredential.user;
+  //   // ...
+  // })
+  // .catch((error) => {
+  //   const errorCode = error.code;
+  //   const errorMessage = error.message;
+  //   // ..
+  // });
+
 export const AuthenticationContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
+
+  onAuthStateChanged(auth, (usr) => {
+    if (usr) {
+      setUser(usr);
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
+    }
+  });
 
   const onLogin = (email, password) => {
     
@@ -24,7 +44,6 @@ export const AuthenticationContextProvider = ({ children }) => {
       })
       .catch((e) => {
         setIsLoading(false);
-        // setError(e);
         setError(e.toString());
       });
   };
@@ -46,17 +65,18 @@ export const AuthenticationContextProvider = ({ children }) => {
       });
   };
 
-  // createUserWithEmailAndPassword(auth, email, password)
-  // .then((userCredential) => {
-  //   // Signed in 
-  //   const user = userCredential.user;
-  //   // ...
-  // })
-  // .catch((error) => {
-  //   const errorCode = error.code;
-  //   const errorMessage = error.message;
-  //   // ..
-  // });
+
+  const onLogout = () => {
+   
+    signOut(auth).then(() => {
+      // Sign-out successful.
+      setUser(null);
+      signOut(auth);
+    }).catch((error) => {
+      // An error happened.
+    });
+  }
+ 
 
   return (
     <AuthenticationContext.Provider
@@ -65,7 +85,8 @@ export const AuthenticationContextProvider = ({ children }) => {
         isLoading,
         error,
         onLogin,
-        onRegister
+        onRegister,
+        onLogout
       }}
     >
       {children}

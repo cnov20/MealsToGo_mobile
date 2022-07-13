@@ -25,5 +25,5 @@ const auth = getAuth(app);
 // }
 
 export const loginRequest = async (email, password) => {
-  signInWithEmailAndPassword(auth, email, password);
+  await signInWithEmailAndPassword(auth, email, password);
 }

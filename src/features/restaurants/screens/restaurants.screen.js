@@ -4,6 +4,7 @@ import styled from "styled-components/native";
 import { ActivityIndicator, Colors } from "react-native-paper";
 
 import { FadeInView } from "../../../components/animations/fade.animation";
+// import { FadeInView } from "../../../components/"
 import { SafeArea } from "../../../components/utils/safe-area.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { FavouritesBar } from "../../../components/favourites/favourites-bar.component";

@@ -7,9 +7,9 @@ import {
 
 import { LocationContext } from '../location/location.context';
 
-const RestaurantsContext = createContext();
+export const RestaurantsContext = createContext();
 
-const RestaurantsContextProvider = ({ children }) => {
+export const RestaurantsContextProvider = ({ children }) => {
 
     const [restaurants, setRestaurants] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -17,21 +17,20 @@ const RestaurantsContextProvider = ({ children }) => {
     const { location } = useContext(LocationContext);
 
     const retrieveRestaurants = (loc) => {
+        
         setIsLoading(true);
         setRestaurants([]);
 
-        setTimeout(() => {
-            restaurantsRequest(loc)
-                .then(restaurantsTransform)
-                .then((results) => {
-                    setIsLoading(false);
-                    setRestaurants(results);
-                })
-                .catch((error) => {
-                    setIsLoading(false);
-                    setError(error);
-                });
-        }, 2000);
+        restaurantsRequest(loc)
+            .then(restaurantsTransform)
+            .then((results) => {
+                setIsLoading(false);
+                setRestaurants(results);
+            })
+            .catch((error) => {
+                setIsLoading(false);
+                setError(error);
+            });
     };
 
     useEffect(() => {
@@ -54,4 +53,4 @@ const RestaurantsContextProvider = ({ children }) => {
     );
 };
 
-export { RestaurantsContext, RestaurantsContextProvider };
+// export { RestaurantsContext, RestaurantsContextProvider };

@@ -1,15 +1,10 @@
-import { mockImages, mocks } from "./mock";
 import camelize from "camelize";
+import { host } from "../../utils/env";
 
 export const restaurantsRequest = function (location) {
-    // console.log(mocks[location]);
-    return new Promise((resolve, reject) => {
-        const mock = mocks[location];
-        if (!mock) {
-            reject("Location — Not Found");
-        }
-        resolve(mock);
-    });
+    return fetch(`${host}/geocode?city=${searchTerm}`).then((res) => {
+        return res.json();
+      });
 }
 
 export const restaurantsTransform = ({ results = [] }) => {

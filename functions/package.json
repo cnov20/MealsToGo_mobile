@@ -14,6 +14,7 @@
   },
   "main": "index.js",
   "dependencies": {
+    "@googlemaps/google-maps-services-js": "^3.3.16",
     "firebase-admin": "^10.0.2",
     "firebase-functions": "^3.18.0"
   },

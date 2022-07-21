@@ -25,8 +25,6 @@ module.exports.placesRequest = (request, response, client) => {
     if (data) {
       data.results = data.results.map(addMockImage);
     }
-
-    // response.send(mocks[location]);
     return response.json(data);
   }
   client
